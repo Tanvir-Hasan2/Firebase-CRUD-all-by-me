@@ -1,13 +1,14 @@
-import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:flutter/material.dart';
 
-void main() async{
+import 'auth/sign_in.dart';
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
+  await Firebase.initializeApp();
+  runApp(
+    const MyApp(),
   );
-  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -17,47 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Firebase Crud',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: SignIn(),
     );
   }
 }
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.teal,
-          title: const Text("Firebase Crud",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold),),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Container(
-            color: Colors.white12,
-            child: const Column(
-              children: [
-                Text("\nHello"),
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-
-
